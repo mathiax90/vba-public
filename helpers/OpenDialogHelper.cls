@@ -52,3 +52,16 @@ Function SelectFile(ByRef selectedFile As String, Optional fileType As Variant, 
         SelectFile = True
     End If
 End Function
+
+Function SelectFolder(ByRef selectedFolder As String, Optional InitialDir As String = "c:\") As Boolean
+    With Application.FileDialog(msoFileDialogFolderPicker)
+        If .Show = -1 Then ' if OK is pressed
+            selectedFolder = .SelectedItems(1)
+            SelectFolder = True
+        Else
+            SelectFolder = False
+        End If
+    End With
+End Function
+
+
