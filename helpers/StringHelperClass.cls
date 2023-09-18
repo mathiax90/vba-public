@@ -71,7 +71,7 @@ Public Function CamelCaseBySymbol(CellRef As String, Symbol As String, Optional 
     arraySplit = Split(CellRef, Symbol)
     outval = LCase(arraySplit(0))
     
-    For i = 1 To ArrayHelper.Length(arraySplit) - 1
+    For i = 1 To ArrayHelper.length(arraySplit) - 1
         outval = outval & CapitalizeFirstLetter(Trim(arraySplit(i)))
     Next
         
@@ -90,7 +90,7 @@ Public Function PascalCaseBySymbol(CellRef As String, Symbol As String, Optional
     
     arraySplit = Split(CellRef, Symbol)
     
-    For i = 0 To ArrayHelper.Length(arraySplit) - 1
+    For i = 0 To ArrayHelper.length(arraySplit) - 1
         outval = outval & CapitalizeFirstLetter(Trim(arraySplit(i)))
     Next
         
@@ -109,3 +109,32 @@ Public Function Repeat(value As String, number As Integer)
         Repeat = Repeat & value
     Next
 End Function
+
+Public Function Coalesce(ParamArray Fields() As Variant) As Variant
+
+    Dim v As Variant
+
+    For Each v In Fields
+        If "" & v <> "" Then
+            Coalesce = v
+            Exit Function
+        End If
+    Next
+    Coalesce = ""
+
+End Function
+
+Public Function JoinStringCollection(c As Collection, delim As String)
+    Dim item As Variant
+    Dim length As Long
+    Dim r As String
+    
+    For Each item In c
+        If Trim(CStr(item)) <> "" Then
+            r = Trim(r) & CStr(item) & delim
+        End If
+    Next
+        If Len(r) > 0 Then r = Left(r, Len(r) - 1)
+    JoinStringCollection = r
+End Function
+

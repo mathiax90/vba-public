@@ -17,3 +17,15 @@ Exception:
     MonthNameToMonth = 0
     Debug.Print "DateHelper.MonthNameToMonth: Error while parse monthName to monthNumber"
 End Function
+
+
+Function FormatYYYYMMDD(inval As String, Optional fmt As String) As String
+    If fmt = "" Then fmt = "dd.mm.yyyy"
+    
+    inval = Left(Trim(inval), 10)
+    If inval <> "" Then
+        FormatYYYYMMDD = Format(CDate(inval), fmt)
+    Else
+        FormatYYYYMMDD = ""
+    End If
+End Function

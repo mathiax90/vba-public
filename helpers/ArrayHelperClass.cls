@@ -9,11 +9,11 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
-Function Length(a As Variant) As Long
+Function length(a As Variant) As Long
  If IsEmpty(a) Then
-      Length = 0
+      length = 0
    Else
-      Length = UBound(a) - LBound(a) + 1
+      length = UBound(a) - LBound(a) + 1
    End If
 End Function
 
